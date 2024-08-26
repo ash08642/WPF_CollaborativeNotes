@@ -12,18 +12,23 @@ namespace CollaborativeNotes.Models
     {
         public enum ColoursIndices
         {
-            IconC,
-            FadedIconC,
-            PrimaryBgC,
-            SecondaryBgC,
-            TertiaryBgC,
-            ForthBgC,
-            PrimaryFontC,
-            SecondaryFontC,
-            TertiaryFontC
+            IconActiveForeground,
+            IconInactiveForeground,
+            DashboardIconBackground,
+            DashboardIconBorder,
+            PrimaryBackground,
+            SecondaryBackground,
+            TertiaryBackground,
+            ForthBackground,
+            PrimaryFont,
+            SecondaryFont,
+            TertiaryFont,
+            FileTree,
+            CloseIcon,
+            MaxMinIcon
         }
 
-        public static int themesSize = 9;
+        public static int themesSize = 14;
 
         public IList<SolidColorBrush> myColors {  get; set; }
 

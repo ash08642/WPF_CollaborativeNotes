@@ -4,25 +4,199 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollaborativeNotes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="400">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="3*" />
-        </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="700" Width="400"
+        WindowStyle="None"
+        >
+    <DockPanel>
+        <Border DockPanel.Dock="Top" BorderThickness="0,0,0,1" Height="32" BorderBrush="{Binding myTheme.myColors[0]}" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Grid Background="{Binding myTheme.myColors[4]}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button x:Name="minimizeEditorBtn"
+                        Margin="7,0"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Height="24" Width="24"
+                        ToolTip="MaterialDesignIconButton"
+                        Foreground="{Binding myTheme.myColors[1]}"
+                        MouseEnter="Button_MouseEnter"
+                        MouseLeave="Button_MouseLeave"
+                        Click="minimizeEditorBtn_Click"
+                    >
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="20" Height="20" />
+                    </Button>
+
+                    <Button x:Name="maximizeEditorBtn"
+                        Margin="7,0"    
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Height="24" Width="24"
+                        ToolTip="MaterialDesignIconButton"
+                        Foreground="{Binding myTheme.myColors[1]}"
+                        MouseEnter="Button_MouseEnter"
+                        MouseLeave="Button_MouseLeave"
+                        Click="maximizeEditorBtn_Click"
+                    >
+                        <materialDesign:PackIcon Kind="WindowMaximize" Width="20" Height="20" />
+                    </Button>
+
+                    <Button x:Name="closeEditorWindow"
+                        Margin="7,0"    
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Height="24" Width="24"
+                        ToolTip="MaterialDesignIconButton"
+                        Foreground="{Binding myTheme.myColors[1]}"
+                        MouseEnter="Button_MouseEnter"
+                        MouseLeave="Button_MouseLeave"
+                        Click="closeEditorWindow_Click"
+                    >
+                        <materialDesign:PackIcon Kind="WindowClose" Width="20" Height="20" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid x:Name="dashboardOption" DockPanel.Dock="Bottom">
+            
+        </Grid>
+
+        <Grid x:Name="dashboard" Background="{Binding myTheme.myColors[4]}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
-            <Button x:Name="newFileBtn" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Click="newFileBtn_Click">New File</Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0">
+                    <TextBlock 
+                        Foreground="{Binding myTheme.myColors[9]}"
+                        TextDecorations="Underline"
+                        FontSize="20"
+                    >
+                        Recently Opened
+                    </TextBlock>
+                    <ListView>
+                        <ListViewItem Content="Hello" />
+                        <ListViewItem Content="World" />
+                        <ListViewItem Content=":)" />
+                    </ListView>
+                </StackPanel>
+
+                <Border Grid.Column="1"
+                    BorderThickness="1,0,0,0"
+                    BorderBrush="Black"
+                    VerticalAlignment="Center"
+                >
+                    <StackPanel>
+                        <Button
+                            HorizontalAlignment="Left"
+                            ToolTip="MaterialDesignIconButton"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Foreground="{Binding myTheme.myColors[9]}"
+                            Background="{Binding myTheme.myColors[5]}"
+                            BorderBrush="{Binding myTheme.myColors[3]}"
+                            Width="200"
+                            Margin="0,8"
+                        >
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Height="24" Width="24" />
+                                    <TextBlock VerticalAlignment="Center">Create new Local file</TextBlock>
+                                </StackPanel>
+                        </Button>
+                        
+                        <Button
+                            HorizontalAlignment="Left"
+                            ToolTip="MaterialDesignIconButton"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Foreground="{Binding myTheme.myColors[9]}"
+                            Background="{Binding myTheme.myColors[5]}"
+                            BorderBrush="{Binding myTheme.myColors[3]}"
+                            Width="200"
+                            Margin="0,8"
+                        >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Height="24" Width="24" />
+                                <TextBlock VerticalAlignment="Center">Create new Global file</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </Border>
+            </Grid>
+
+            <WrapPanel Grid.Row="1" 
+                HorizontalAlignment="Center"
+            >
+                
+                <Button x:Name="invitationsBtn" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Width="150"
+                    Height="150"
+                    FontSize="22"
+                    Margin="20,20"
+                    Background="{Binding myTheme.myColors[5]}"
+                    Foreground="{Binding myTheme.myColors[0]}"
+                    Click="invitationsBtn_Click"
+                >
+                    Invitations
+                </Button>
+
+                <Button x:Name="contactsBtn" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Width="150"
+                    Height="150"
+                    FontSize="22"
+                    Margin="20,20"
+                    Background="{Binding myTheme.myColors[5]}"
+                    Foreground="{Binding myTheme.myColors[0]}"
+                    Click="invitationsBtn_Click"
+                >
+                    Contacts
+                </Button>
+
+                <Button x:Name="themeBtn"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Width="150"
+                    Height="150"
+                    FontSize="22"
+                    Margin="20,20"
+                    Background="{Binding myTheme.myColors[5]}"
+                    Foreground="{Binding myTheme.myColors[0]}"
+                    Click="invitationsBtn_Click"
+                >
+                    Themes
+                </Button>
+
+                <Button x:Name="accountBtn"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Width="150"
+                    Height="150"
+                    FontSize="22"
+                    Margin="20,20"
+                    Background="{Binding myTheme.myColors[5]}"
+                    Foreground="{Binding myTheme.myColors[0]}"
+                    Click="invitationsBtn_Click"
+                >
+                    My Account
+                </Button>
+            </WrapPanel>
         </Grid>
-    </Grid>
+    </DockPanel>
+
 </Window>

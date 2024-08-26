@@ -16,21 +16,60 @@ namespace CollaborativeNotes
         [DllImport("Kernel32", SetLastError = true)]
         public static extern void FreeConsole();
 
-        private readonly IDataAccess _dataAccess;
+        private readonly DataAccess _dataAccess;
         private readonly IAbstractFactory<EditorWindow> _editorFactory;
 
         public MainWindow(IDataAccess dataAccess, IAbstractFactory<EditorWindow> editorFactory)
         {
+            AllocConsole();
             InitializeComponent();
-            _dataAccess = dataAccess;
+            _dataAccess = (DataAccess)dataAccess;
+            this.DataContext = _dataAccess;
             _editorFactory = editorFactory;
             Title = "Hello";
-            AllocConsole();
+            dashboardOption.Visibility = Visibility.Collapsed;
         }
 
-        private void newFileBtn_Click(object sender, RoutedEventArgs e)
+        private void invitationsBtn_Click(object sender, RoutedEventArgs e)
         {
             _editorFactory.Create().Show();
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Button_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ((Button)sender).Foreground = _dataAccess.myTheme.myColors[0];
+        }
+
+        private void Button_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ((Button)sender).Foreground = _dataAccess.myTheme.myColors[1];
+        }
+
+        private void closeEditorWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void maximizeEditorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Normal)
+            {
+                this.WindowState = System.Windows.WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = System.Windows.WindowState.Normal;
+            }
+        }
+
+        private void minimizeEditorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
         }
     }
 }
