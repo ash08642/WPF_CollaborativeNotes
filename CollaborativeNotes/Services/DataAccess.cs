@@ -23,7 +23,7 @@ namespace CollaborativeNotes.Services
             colours[(int)Theme.ColoursIndices.IconActiveForeground] = new SolidColorBrush(MyColors.tinacious_pink);
             colours[(int)Theme.ColoursIndices.IconInactiveForeground] = new SolidColorBrush(MyColors.tinacious_lightPink);
             colours[(int)Theme.ColoursIndices.DashboardIconBackground] = new SolidColorBrush(MyColors.tinacious_secondaryBackground);
-            colours[(int)Theme.ColoursIndices.DashboardIconBorder] = new SolidColorBrush(MyColors.tinacious_lightPink);
+            colours[(int)Theme.ColoursIndices.Border] = new SolidColorBrush(MyColors.tinacious_pink);
             colours[(int)Theme.ColoursIndices.PrimaryBackground] = new SolidColorBrush(MyColors.tinacious_primaryBackground);
             colours[(int)Theme.ColoursIndices.SecondaryBackground] = new SolidColorBrush(MyColors.tinacious_secondaryBackground);
             colours[(int)Theme.ColoursIndices.TertiaryBackground] = new SolidColorBrush(MyColors.tinacious_pink);

@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace CollaborativeNotes
 {
@@ -21,13 +22,13 @@ namespace CollaborativeNotes
 
         public MainWindow(IDataAccess dataAccess, IAbstractFactory<EditorWindow> editorFactory)
         {
-            AllocConsole();
+            //AllocConsole();
             InitializeComponent();
             _dataAccess = (DataAccess)dataAccess;
             this.DataContext = _dataAccess;
             _editorFactory = editorFactory;
             Title = "Hello";
-            dashboardOption.Visibility = Visibility.Collapsed;
+            //dashboardOption.Visibility = Visibility.Collapsed;
         }
 
         private void invitationsBtn_Click(object sender, RoutedEventArgs e)
@@ -70,6 +71,26 @@ namespace CollaborativeNotes
         private void minimizeEditorBtn_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void themeBtn_Click(object sender, RoutedEventArgs e)
+        { 
+            optionsPanel.Children.Add(new ThemeViewControl());
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.From = optionsPanel.Height;
+            animation.To = 658;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+            optionsPanel.BeginAnimation(HeightProperty, animation);
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            optionsPanel.Children.RemoveAt(1);
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.From = optionsPanel.Height;
+            animation.To = 0;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(350));
+            optionsPanel.BeginAnimation(HeightProperty, animation);
         }
     }
 }

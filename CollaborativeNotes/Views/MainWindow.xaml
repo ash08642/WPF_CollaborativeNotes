@@ -63,10 +63,6 @@
             </Grid>
         </Border>
 
-        <Grid x:Name="dashboardOption" DockPanel.Dock="Bottom">
-            
-        </Grid>
-
         <Grid x:Name="dashboard" Background="{Binding myTheme.myColors[4]}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
@@ -96,7 +92,7 @@
 
                 <Border Grid.Column="1"
                     BorderThickness="1,0,0,0"
-                    BorderBrush="Black"
+                    BorderBrush="{Binding myTheme.myColors[3]}"
                     VerticalAlignment="Center"
                 >
                     <StackPanel>
@@ -177,7 +173,7 @@
                     Margin="20,20"
                     Background="{Binding myTheme.myColors[5]}"
                     Foreground="{Binding myTheme.myColors[0]}"
-                    Click="invitationsBtn_Click"
+                    Click="themeBtn_Click"
                 >
                     Themes
                 </Button>
@@ -196,6 +192,16 @@
                     My Account
                 </Button>
             </WrapPanel>
+
+            <StackPanel x:Name="optionsPanel" 
+                        Height="0" 
+                        VerticalAlignment="Bottom" 
+                        Grid.RowSpan="2" 
+                        Panel.ZIndex="6" 
+                        Background="{Binding myTheme.myColors[4]}"
+            >
+                <Button x:Name="backBtn" Height="20" Click="backBtn_Click">hi</Button>
+            </StackPanel>
         </Grid>
     </DockPanel>
 

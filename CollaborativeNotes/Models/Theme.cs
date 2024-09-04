@@ -15,7 +15,7 @@ namespace CollaborativeNotes.Models
             IconActiveForeground,
             IconInactiveForeground,
             DashboardIconBackground,
-            DashboardIconBorder,
+            Border,
             PrimaryBackground,
             SecondaryBackground,
             TertiaryBackground,
